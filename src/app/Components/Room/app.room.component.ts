@@ -9,11 +9,37 @@ declare let SimpleWebRTC: any;
     providers: [WebRtcService]
 })
 export class AppRoomComponent implements OnInit {
-    constructor(private webrtcService: WebRtcService) {
+    @ViewChild('videos') videobox: any;
 
+    constructor(private webrtcService: WebRtcService) {
+        this.webrtcService.init();
+
+        webrtcService.onReadyToCall().subscribe(() => {
+
+
+            this.webrtcService.getRTC().joinRoom('test');
+
+
+            console.log('ready');
+
+
+        });
+
+        webrtcService.onVideoAdded().subscribe(data => {
+
+            this.videobox.nativeElement.childNodes.forEach((node: any) => {
+                console.log();
+                node.controls = true;
+                if (node.id.search('audio') === -1) {
+                    node.style.display = 'none';
+                }
+            });
+
+
+        });
     }
 
     ngOnInit(): void {
-    }
 
+    }
 }

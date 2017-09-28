@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {WebRtcService} from './WebRtcService';
+import {Config} from './Config/Config';
 
 declare let SimpleWebRTC: any;
 
@@ -7,7 +8,7 @@ declare let SimpleWebRTC: any;
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    providers: [WebRtcService]
+    providers: []
 })
 export class AppComponent implements OnInit {
     public title = 'app';
@@ -15,45 +16,44 @@ export class AppComponent implements OnInit {
 
     videosArray: Array<any> = [];
     textbox;
-
+    notificationOptions = Config.notificationOptions;
     ngOnInit(): void {
 
     }
-
+    /**
     public test() {
-//        this.webrtcService.getRTC().sendToAll('setUser', {username: 'Test'});
+        this.webrtcService.getRTC().sendToAll('setUser', {username: 'Test'});
 
     }
 
-    constructor() {
+    constructor(private webrtcService: WebRtcService) {
 
-        /**
-         webrtcService.onConnectionReady().subscribe(id => {
+
+        webrtcService.onConnectionReady().subscribe(id => {
 
 
             this.webrtcService.getRTC().sendToAll('setUser', {id: id, username: 'Test'});
             this.webrtcService.getRTC().joinRoom('mainChannel');
 
         });
-         webrtcService.onError().subscribe(error => {
+        webrtcService.onError().subscribe(error => {
             console.warn(error);
         });
-         webrtcService.onTextMessage().subscribe(text => {
+        webrtcService.onTextMessage().subscribe(text => {
             console.log(text);
         });
-         webrtcService.onSetUser().subscribe(user => {
+        webrtcService.onSetUser().subscribe(user => {
             console.log(user);
         });
 
-         webrtcService.onRoomReady().subscribe(state => {
+        webrtcService.onRoomReady().subscribe(state => {
             console.log('state', state);
         });
 
-         webrtcService.onReadyToCall().subscribe(() => {
+        webrtcService.onReadyToCall().subscribe(() => {
 
 
-
-        //    this.webrtcService.getRTC().joinRoom('mainChannel');
+            this.webrtcService.getRTC().joinRoom('test');
 
 
             console.log('ready');
@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
 
         });
 
-         webrtcService.onVideoAdded().subscribe(data => {
+        webrtcService.onVideoAdded().subscribe(data => {
 
             this.videobox.nativeElement.childNodes.forEach((node: any) => {
 
@@ -75,6 +75,7 @@ export class AppComponent implements OnInit {
 
             this.videosArray.push(data.peer.id);
         });
-         **/
+
     }
+ **/
 }

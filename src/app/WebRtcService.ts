@@ -10,6 +10,10 @@ export class WebRtcService {
 
 
     constructor() {
+
+    }
+
+    public init() {
         this.webrtc = new SimpleWebRTC({
             url: 'http://localhost:8888',
             socketio: {},
@@ -25,12 +29,12 @@ export class WebRtcService {
         });
     }
 
-    getRTC() {
+    public getRTC() {
         return this.webrtc;
     }
 
 
-    onError() {
+    public onError() {
         return new Observable<any>(observer => {
             this.webrtc.on('error', error => {
                 observer.next(error);
@@ -38,7 +42,7 @@ export class WebRtcService {
         });
     }
 
-    onSetUser() {
+    public onSetUser() {
         return new Observable<any>(observer => {
             this.webrtc.connection.on('message', data => {
                 console.log(data);
@@ -49,7 +53,7 @@ export class WebRtcService {
         });
     }
 
-    onTextMessage() {
+    public onTextMessage() {
         return new Observable<any>(observer => {
             this.webrtc.connection.on('message', data => {
                 if (data.type === 'text') {
@@ -59,7 +63,7 @@ export class WebRtcService {
         });
     }
 
-    onRoomReady() {
+    public onRoomReady() {
         return new Observable<any>(observer => {
             this.webrtc.connection.on('message', data => {
                 if (data.type === 'roomReady') {
@@ -69,7 +73,7 @@ export class WebRtcService {
         });
     }
 
-    onConnectionReady() {
+    public onConnectionReady() {
         return new Observable<any>(observer => {
             this.webrtc.on('connectionReady', sessionId => {
                 observer.next(sessionId);
@@ -78,7 +82,7 @@ export class WebRtcService {
         });
     }
 
-    onReadyToCall() {
+    public onReadyToCall() {
         return new Observable<any>(observer => {
             this.webrtc.on('readyToCall', () => {
                 observer.next();
@@ -87,7 +91,7 @@ export class WebRtcService {
         });
     }
 
-    onVideoAdded() {
+    public onVideoAdded() {
         return new Observable<any>(observer => {
             this.webrtc.on('videoAdded', (video, peer) => {
                 observer.next({video: video, peer: peer});
@@ -95,7 +99,7 @@ export class WebRtcService {
         });
     }
 
-    onVideoRemoved() {
+    public onVideoRemoved() {
         return new Observable<any>(observer => {
             this.webrtc.on('videoRemoved', (video, peer) => {
                 observer.next({video: video, peer: peer});
