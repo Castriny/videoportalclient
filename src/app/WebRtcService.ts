@@ -15,7 +15,7 @@ export class WebRtcService {
 
     public init() {
         this.webrtc = new SimpleWebRTC({
-            url: 'http://localhost:8888',
+            url: 'https://myvisitplace.de:8888',
             socketio: {},
             connection: null,
             debug: false,
