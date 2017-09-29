@@ -23,7 +23,7 @@
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "angular2-jwt": "^0.2.3",
-    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap": "4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
@@ -31,6 +31,7 @@
     "rxjs": "^5.4.2",
     "simplewebrtc": "^3.0.1",
     "tether": "^1.4.0",
+    "webrtc-adapter": "4.0.0",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
