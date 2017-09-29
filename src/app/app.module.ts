@@ -13,7 +13,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {JWTInterceptor} from './Interceptors/JWTInterceptor';
 import {CanActivateViaAuthGuard} from './Service/AuthService/Guards/CanActivateViaAuthGuard';
 import {AuthService} from './Service/AuthService/AuthService';
-import {NotificationsService, SimpleNotificationsModule} from 'angular2-notifications/dist';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
@@ -45,7 +44,6 @@ const appRoutes: Routes = [
         ReactiveFormsModule,
         FormsModule,
         HttpClientModule,
-        SimpleNotificationsModule.forRoot(),
         RouterModule.forRoot(
             appRoutes,
             {enableTracing: false} // <-- debugging purposes only
@@ -54,7 +52,6 @@ const appRoutes: Routes = [
 
     ],
     providers: [
-        NotificationsService,
         CanActivateViaAuthGuard,
         AuthService,
         {
