@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "ladyblackopium"
+    "name": "videoclient",
+    "ejected": false
   },
   "apps": [
     {
@@ -24,6 +25,7 @@
       "scripts": [
         "../node_modules/simplewebrtc/out/simplewebrtc-with-adapter.bundle.js",
         "../node_modules/jquery/dist/jquery.js",
+
         "../node_modules/tether/dist/js/tether.js",
         "../node_modules/popper.js/dist/umd/popper.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.js"
@@ -61,6 +63,7 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "component": {
+    }
   }
 }
