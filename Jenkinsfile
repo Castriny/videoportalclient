@@ -35,12 +35,12 @@ node {
     sh "ssh -vvv -o StrictHostKeyChecking=no '${stage_user}'@'${stage_server}' tar -xvzf ./buildartifacts/myvisitplace.client.'${env.BUILD_NUMBER}'.tar.gz -C ./client-'${env.BUILD_NUMBER}' --strip-components=2"
     sh "ssh -vvv -o StrictHostKeyChecking=no '${stage_user}'@'${stage_server}' rm ./buildartifacts/myvisitplace.client.'${env.BUILD_NUMBER}'.tar.gz"
 
-       sh "ssh -vvv -o StrictHostKeyChecking=no '${stage_user}'@'${stage_server}' sudo rm -rf /var/www/html/client"
-        sh "ssh -vvv -o StrictHostKeyChecking=no '${stage_user}'@'${stage_server}' sudo mv ./client-'${env.BUILD_NUMBER}' /var/www/html/client"
+    sh "ssh -vvv -o StrictHostKeyChecking=no '${stage_user}'@'${stage_server}' sudo rm -rf /var/www/html/client"
+    sh "ssh -vvv -o StrictHostKeyChecking=no '${stage_user}'@'${stage_server}' sudo mv ./client-'${env.BUILD_NUMBER}' /var/www/html/client"
 
-        sh "ssh -vvv -o StrictHostKeyChecking=no '${stage_user}'@'${stage_server}' sudo cp ./.htaccess /var/www/html/client/"
-        sh "ssh -vvv -o StrictHostKeyChecking=no '${stage_user}'@'${stage_server}' sudo chown www-data:www-data /var/www/html/client/ -R"
-sh "ssh -vvv -o StrictHostKeyChecking=no '${stage_user}'@'${stage_server}' sudo chmod 655 /var/www/html/client/.htaccess"
+    sh "ssh -vvv -o StrictHostKeyChecking=no '${stage_user}'@'${stage_server}' sudo cp ./.htaccess /var/www/html/client/"
+    sh "ssh -vvv -o StrictHostKeyChecking=no '${stage_user}'@'${stage_server}' sudo chown www-data:www-data /var/www/html/client/ -R"
+    sh "ssh -vvv -o StrictHostKeyChecking=no '${stage_user}'@'${stage_server}' sudo chmod 655 /var/www/html/client/.htaccess"
 
     }
 
