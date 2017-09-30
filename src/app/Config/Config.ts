@@ -1,6 +1,8 @@
+import {environment} from '../../environments/environment';
+
 export class Config {
 
-    public static httpBasePath = 'http://videoportal.local/api/';
+    public static httpBasePath = environment.api
 
 
     public static notificationOptions: any = {

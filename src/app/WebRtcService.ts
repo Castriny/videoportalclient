@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {environment} from "../environments/environment";
+import {environment} from '../environments/environment';
 
 declare let SimpleWebRTC: any;
 
@@ -16,7 +16,7 @@ export class WebRtcService {
 
     public init() {
         this.webrtc = new SimpleWebRTC({
-            url: 'https://myvisitplace.de:8888',
+            url: environment.webrtcUrl,
             socketio: {},
             connection: null,
             debug: false,
