@@ -2,7 +2,7 @@ import {environment} from '../../environments/environment';
 
 export class Config {
 
-    public static httpBasePath = environment.api
+    public static httpBasePath = 'https://api.myvisitplace.de/api/'
 
 
     public static notificationOptions: any = {
