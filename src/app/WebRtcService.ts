@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import {environment} from "../environments/environment";
 
 declare let SimpleWebRTC: any;
 
@@ -22,7 +23,9 @@ export class WebRtcService {
             localVideoEl: 'local-video',
             remoteVideosEl: 'remote-video',
             autoRequestMedia: true,
-            adjustPeerVolume: true,
+            peerVolumeWhenSpeaking: 0.25,
+            adjustPeerVolume: false,
+            nick: 'test',
             media: {
                 video: true, audio: true
             }
