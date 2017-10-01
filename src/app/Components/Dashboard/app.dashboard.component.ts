@@ -8,5 +8,6 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppDashboardComponent implements OnInit {
     ngOnInit(): void {
+
     }
 }

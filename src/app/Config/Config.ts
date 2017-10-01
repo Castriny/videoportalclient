@@ -2,7 +2,7 @@ import {environment} from '../../environments/environment';
 
 export class Config {
 
-    public static httpBasePath = 'https://api.myvisitplace.de/api/'
+    public static httpBasePath = 'http://videoportal.local/api/';
 
 
     public static notificationOptions: any = {

@@ -7,5 +7,5 @@ export const environment = {
     production: false,
     envName: 'dev',
     webrtcUrl: 'http://localhost:8888',
-    api: 'https:/videoportal.local'
+    api: 'http:/videoportal.local/api'
 };

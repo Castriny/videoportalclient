@@ -4,7 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {AppRoomComponent} from './Components/Room/app.room.component';
-import {AppPagenotfoundComponent} from './Components/PageNotFound/app.pagenotfound.component';
+import {AppPagenotfoundComponent} from './Components/GUI/PageNotFound/app.pagenotfound.component';
 import {AppRegisterComponent} from './Components/Register/app.register.component';
 import {AppDashboardComponent} from './Components/Dashboard/app.dashboard.component';
 import {AppLoginComponent} from './Components/Login/app.login.component';
@@ -14,10 +14,17 @@ import {JWTInterceptor} from './Interceptors/JWTInterceptor';
 import {CanActivateViaAuthGuard} from './Service/AuthService/Guards/CanActivateViaAuthGuard';
 import {AuthService} from './Service/AuthService/AuthService';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AppNavbarComponent} from './Components/GUI/Navbar/app.navbar.component';
+import {AppHeaderComponent} from './Components/GUI/Header/app.header.component';
+import {AppFooterComponent} from './Components/GUI/Footer/app.footer.component';
+import {AppGalleryComponent} from './Components/GUI/Gallery/app.gallery.component';
+import {AppShoppingcartComponent} from './Components/ShoppingCart/app.shoppingcart.component';
+import {AppUploadfilesComponent} from './Components/UploadFiles/app.uploadfiles.component';
+import {FileUploadModule} from 'ng2-file-upload';
 
 const appRoutes: Routes = [
     {path: 'register', component: AppRegisterComponent},
-    {path: 'dashboard', component: AppDashboardComponent, canActivate: [CanActivateViaAuthGuard]},
+    {path: 'dashboard', component: AppDashboardComponent},
     {path: 'login', component: AppLoginComponent},
 
     {
@@ -30,6 +37,16 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
+
+        AppNavbarComponent,
+        AppHeaderComponent,
+        AppFooterComponent,
+        AppGalleryComponent,
+        AppShoppingcartComponent,
+        AppUploadfilesComponent,
+
+
+
         AppComponent,
         AppPagenotfoundComponent,
         AppRoomComponent,
@@ -44,6 +61,7 @@ const appRoutes: Routes = [
         ReactiveFormsModule,
         FormsModule,
         HttpClientModule,
+        FileUploadModule,
         RouterModule.forRoot(
             appRoutes,
             {enableTracing: false} // <-- debugging purposes only

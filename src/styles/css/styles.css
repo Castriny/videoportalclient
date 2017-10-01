@@ -1,0 +1,112 @@
+/*
+ * Base structure
+ */
+
+@import "../../../node_modules/font-awesome/css/font-awesome.css";
+@import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+
+    background-color: #303030;
+}
+
+/*
+ * Typography
+ */
+.thumbnailBorderActiv {
+    border: 1px solid red;
+}
+.img-thumbnail:hover {
+    cursor: pointer;
+    list-style: none;
+    text-decoration: none;
+}
+h1 {
+    margin-bottom: 20px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #eee;
+}
+/* layout.css Style */
+.upload-drop-zone {
+    height: 200px;
+    border-width: 2px;
+    margin-bottom: 20px;
+}
+
+.my-drop-zone { border: dotted 3px lightgray; height: 200px;display:table-cell;text-align: center;vertical-align: middle;width: 100vw }
+.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+.container-fluid {
+    padding: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.remote-videobox video {
+    width: 100%;
+}
+.local-videobox video {
+    width: 100%;
+}
+.simple-notification-wrapper {
+    z-index: 2000!important;
+}
+header {
+    height: 10vh;
+    background-color: #fff;
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+footer {
+    height: 10vh;
+    background-color: #fff;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+footer hr {
+    border:none;
+    height: 20px;
+    width: 100%;
+    height: 50px;
+    margin-top: 0;
+    border-bottom: 1px solid #eeeeee;
+    margin: -50px auto 10px;
+}
+main {
+
+    background-color: #fff;
+
+}
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style:none;
+}
+nav ul li {
+    display: table-cell;
+    vertical-align: middle;
+
+    height: 5vh;
+    font-size: 18px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+nav {
+
+    height: 5vh;
+    vertical-align: middle;
+    color: #fff;
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+nav a {
+    color: #fff;
+}
+nav a:hover {
+    color: #707070;
+    text-decoration: none;
+    cursor: pointer;
+}

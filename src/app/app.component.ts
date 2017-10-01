@@ -1,8 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {WebRtcService} from './WebRtcService';
 import {Config} from './Config/Config';
+import {Router} from "@angular/router";
+
 
 declare let SimpleWebRTC: any;
+declare let $: any;
 
 @Component({
     selector: 'app-root',
@@ -17,16 +20,25 @@ export class AppComponent implements OnInit {
     videosArray: Array<any> = [];
     textbox;
     notificationOptions = Config.notificationOptions;
+
+    constructor(private _router: Router) {
+        this._router.events.subscribe((e: any) => {
+            $('#navbarsExampleDefault').collapse('hide');
+        })
+    }
+
     ngOnInit(): void {
 
+
     }
+
     /**
-    public test() {
+     public test() {
         this.webrtcService.getRTC().sendToAll('setUser', {username: 'Test'});
 
     }
 
-    constructor(private webrtcService: WebRtcService) {
+     constructor(private webrtcService: WebRtcService) {
 
 
         webrtcService.onConnectionReady().subscribe(id => {
@@ -77,5 +89,5 @@ export class AppComponent implements OnInit {
         });
 
     }
- **/
+     **/
 }
