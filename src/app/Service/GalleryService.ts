@@ -16,7 +16,7 @@ export class GalleryService implements Service {
     }
 
     all(): Observable<any> {
-        return undefined;
+        return this.http.get(Config.httpBasePath + this.base_path);
     }
 
 

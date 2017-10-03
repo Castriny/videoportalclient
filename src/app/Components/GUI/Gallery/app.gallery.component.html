@@ -13,10 +13,17 @@
     <div class="panel-body">
 
         <ul class="cards">
-            <li class="card">
-                <div class="card__inner">
-                    <h2>Defender
-                        <small>Series</small>
+
+
+
+            <li *ngFor="let item of galleryList" class="card">
+
+                <div [style.background-image]="getBackground(item.pictures[0].thumbnail)" class="card__inner">
+
+
+
+                    <h2>
+                        <small></small>
                     </h2>
                     <div class="card__buttons">
                         <a href="#">Explore</a>
@@ -33,66 +40,7 @@
                 </ul>
                 <p>$39.95 - $49.95</p>
             </li>
-            <li class="card">
-                <div class="card__inner">
-                    <h2>Defender
-                        <small>Series</small>
-                    </h2>
-                    <div class="card__buttons">
-                        <a href="#">Explore</a>
-                        <a href="#">Shop</a>
-                    </div>
-                </div>
-                <h3 class="card__tagline">Rugged multi-layer protection</h3>
-                <ul class="card__icons">
-                    <li><i class="fa fa-coffee">Coffee</i></li>
-                    <li><i class="fa fa-bolt">Bolt</i></li>
-                    <li><i class="fa fa-bomb">Bomb</i></li>
-                    <li><i class="fa fa-cutlery">Cutlery</i></li>
-                    <li><i class="fa fa-bolt">Bolt</i></li>
-                </ul>
-                <p>$39.95 - $49.95</p>
-            </li>
-            <li class="card">
-                <div class="card__inner">
-                    <h2>Defender
-                        <small>Series</small>
-                    </h2>
-                    <div class="card__buttons">
-                        <a href="#">Explore</a>
-                        <a href="#">Shop</a>
-                    </div>
-                </div>
-                <h3 class="card__tagline">Rugged multi-layer protection</h3>
-                <ul class="card__icons">
-                    <li><i class="fa fa-coffee">Coffee</i></li>
-                    <li><i class="fa fa-bolt">Bolt</i></li>
-                    <li><i class="fa fa-bomb">Bomb</i></li>
-                    <li><i class="fa fa-cutlery">Cutlery</i></li>
-                    <li><i class="fa fa-bolt">Bolt</i></li>
-                </ul>
-                <p>$39.95 - $49.95</p>
-            </li>
-            <li class="card">
-                <div class="card__inner">
-                    <h2>Defender
-                        <small>Series</small>
-                    </h2>
-                    <div class="card__buttons">
-                        <a href="#">Explore</a>
-                        <a href="#">Shop</a>
-                    </div>
-                </div>
-                <h3 class="card__tagline">Rugged multi-layer protection</h3>
-                <ul class="card__icons">
-                    <li><i class="fa fa-coffee">Coffee</i></li>
-                    <li><i class="fa fa-bolt">Bolt</i></li>
-                    <li><i class="fa fa-bomb">Bomb</i></li>
-                    <li><i class="fa fa-cutlery">Cutlery</i></li>
-                    <li><i class="fa fa-bolt">Bolt</i></li>
-                </ul>
-                <p>$39.95 - $49.95</p>
-            </li>
+
         </ul>
     </div>
 </div>
