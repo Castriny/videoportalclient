@@ -126,6 +126,10 @@ export class AppUploadfilesComponent implements OnInit {
             }
 
         });
+        this.uploader.onAfterAddingFile = (file) => {
+            file.withCredentials = false;
+        };
+
 
         this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
             const responseJson = JSON.parse(response);
