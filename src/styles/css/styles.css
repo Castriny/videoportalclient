@@ -23,6 +23,25 @@ body {
     list-style: none;
     text-decoration: none;
 }
+.panel-heading h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+    width: 75%;
+    padding-top: 8px;
+}
+.font-green {
+    color: 	#006400;
+}
+.color-red {
+    color:red;
+    cursor: pointer;
+}
+.font-opacity {
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* msie */
+}
 h1 {
     margin-bottom: 20px;
     padding-bottom: 9px;

@@ -4,7 +4,7 @@
             <div class="panel panel-default">
 
                 <div class="panel-body">
-                    <form class="form-horizontal" novalidate>
+                    <form class="form-horizontal" novalidate  (ngSubmit)="onSubmit()" #loginForm="ngForm">
                         <fieldset>
 
                             <!-- Form Name -->
@@ -19,7 +19,11 @@
                                         <i class="fa fa-at" aria-hidden="true"></i>
                                     </span>
                                         <input id="email" class="form-control"
-                                               placeholder="" type="email">
+                                               placeholder="" type="email"
+                                               required
+                                               [(ngModel)]="model.email" name="email"
+                                               #name="ngModel"
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -33,7 +37,10 @@
                                         <i class="fa fa-key" aria-hidden="true"></i>
                                     </span>
                                         <input id="password" class="form-control"
-                                               placeholder="" type="password">
+                                               placeholder="" type="password"
+                                               required
+                                               [(ngModel)]="model.password" name="password"
+                                               #name="ngModel">
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +49,7 @@
                             <div class="form-group">
 
                                 <div class="col-md-offset-4 col-md-4">
-                                    <button type="submit" class="btn btn-primary">Sign in</button>
+                                    <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Sign in</button>
                                 </div>
                             </div>
 

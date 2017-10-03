@@ -11,23 +11,23 @@ import {AuthData, SessionService} from '../../Service/AuthService/SessionService
 })
 export class AppLoginComponent implements OnInit {
     loginForm: FormGroup;
+    model: AuthData = new AuthData;
 
     ngOnInit(): void {
     }
 
-    onSubmit({value, valid}: { value: any, valid: boolean }) {
+    onSubmit() {
+console.log(this.loginForm.valid);
 
-        if (this.loginForm.valid) {
-            const authData = new AuthData();
-            authData.email = value.email;
-            authData.password = value.password;
-            this._sessionService.authenticate(authData).subscribe((response: any) => {
+
+
+            this._sessionService.authenticate(this.model).subscribe((response: any) => {
                 localStorage.setItem('token', response.token);
                 this._router.navigate(['/dashboard']);
             });
-        }
 
-        console.log(value);
+
+
     }
 
     constructor(private _router: Router, private _sessionService: SessionService) {

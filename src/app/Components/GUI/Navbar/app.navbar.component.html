@@ -1,7 +1,21 @@
 <nav>
 
     <ul>
-        <li><a>Test</a></li>
-        <li><a>Test</a></li>
+        <li *ngIf="isAuthenticated()">
+            <a routerLink="/dashboard">Dasboard</a>
+        </li>
+        <li *ngIf="isAuthenticated()">
+            <a routerLink="/gallery">Gallery</a>
+        </li>
+        <li *ngIf="!isAuthenticated()">
+            <a routerLink="/login">Login</a>
+
+        </li>
+        <li *ngIf="isAuthenticated()">
+            <a (click)="logout()">Logout</a>
+
+        </li>
+
+
     </ul>
 </nav>

@@ -21,11 +21,17 @@ import {AppGalleryComponent} from './Components/GUI/Gallery/app.gallery.componen
 import {AppShoppingcartComponent} from './Components/ShoppingCart/app.shoppingcart.component';
 import {AppUploadfilesComponent} from './Components/UploadFiles/app.uploadfiles.component';
 import {FileUploadModule} from 'ng2-file-upload';
+import {SessionService} from "./Service/AuthService/SessionService";
 
 const appRoutes: Routes = [
     {path: 'register', component: AppRegisterComponent},
-    {path: 'dashboard', component: AppDashboardComponent},
+    {path: 'dashboard', component: AppDashboardComponent, canActivate: [CanActivateViaAuthGuard]},
     {path: 'login', component: AppLoginComponent},
+    {path: 'gallery', component: AppGalleryComponent, canActivate: [CanActivateViaAuthGuard]},
+    {path: 'gallery/new', component: AppUploadfilesComponent, canActivate: [CanActivateViaAuthGuard]},
+    {path: 'gallery/edit/:id', component: AppUploadfilesComponent, canActivate: [CanActivateViaAuthGuard]},
+
+
 
     {
         path: '',
@@ -44,7 +50,6 @@ const appRoutes: Routes = [
         AppGalleryComponent,
         AppShoppingcartComponent,
         AppUploadfilesComponent,
-
 
 
         AppComponent,
@@ -71,6 +76,7 @@ const appRoutes: Routes = [
     ],
     providers: [
         CanActivateViaAuthGuard,
+        SessionService,
         AuthService,
         {
             provide: HTTP_INTERCEPTORS,
