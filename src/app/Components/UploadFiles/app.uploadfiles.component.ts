@@ -126,7 +126,12 @@ export class AppUploadfilesComponent implements OnInit {
             }
 
         });
+        this.uploader.onBeforeUploadItem = (item) => {
+            console.log('onBeforeUploadItem', item);
+            item.withCredentials = false;
+        }
         this.uploader.onAfterAddingFile = (file) => {
+            console.log('onAfterAddingFile', file);
             file.withCredentials = false;
         };
 
