@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {GalleryService} from "../../../Service/GalleryService";
-import {AuthService} from "../../../Service/AuthService/AuthService";
-import {PictureService} from "../../../Service/PictureService";
-import {PictureGallery} from "../../../Model/PictureGallery";
-import {DomSanitizer} from "@angular/platform-browser";
+import {ActivatedRoute, Router} from '@angular/router';
+import {GalleryService} from '../../../Service/GalleryService';
+import {AuthService} from '../../../Service/AuthService/AuthService';
+import {PictureService} from '../../../Service/PictureService';
+import {PictureGallery} from '../../../Model/PictureGallery';
+import {DomSanitizer} from '@angular/platform-browser';
+import { Compiler } from '@angular/core';
 
 
 @Component({
@@ -15,9 +16,19 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class AppGalleryComponent implements OnInit {
 
     galleryList: Array<PictureGallery> = new Array<PictureGallery>();
-    getBackground(image) {
-        return this._sanitizer.bypassSecurityTrustStyle('url(data:image/jpg;base64,'+image+')');
+
+    getBackground(image: PictureGallery) {
+        let imagesrc: any = null;
+        for (const item of image.pictures) {
+            if (item.titelthumbnail) {
+                imagesrc = item.thumbnail;
+            }
+        }
+
+
+        return this._sanitizer.bypassSecurityTrustStyle('url(data:image/jpg;base64,' + imagesrc + ')');
     }
+
     ngOnInit(): void {
         this._galleryService.all().subscribe((r: any) => {
 
@@ -29,10 +40,12 @@ export class AppGalleryComponent implements OnInit {
                 model.pictures = item.pictures;
                 this.galleryList.push(model);
 
-
+                this._compiler.clearCache();
             }
 
-            console.log(this.galleryList);
+
+
+
         });
     }
 
@@ -40,7 +53,9 @@ export class AppGalleryComponent implements OnInit {
                 private _router: Router,
                 private _galleryService: GalleryService,
                 private _route: ActivatedRoute,
-                private _sanitizer: DomSanitizer) {
+                private _sanitizer: DomSanitizer,
+                private _compiler: Compiler) {
+
     }
 
 }

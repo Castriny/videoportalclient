@@ -22,15 +22,69 @@ import {AppShoppingcartComponent} from './Components/ShoppingCart/app.shoppingca
 import {AppUploadfilesComponent} from './Components/UploadFiles/app.uploadfiles.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import {SessionService} from "./Service/AuthService/SessionService";
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {AppGalleryListComponent} from "./Components/Admin/Gallery/app.gallery.list.component";
+import {AppAdminDashboardComponent} from "./Components/Admin/Gallery/app.admin.dashboard.component";
+import {AppAdminRouterComponent} from "./Components/Admin/Gallery/app.admin.router.component";
 
 const appRoutes: Routes = [
     {path: 'register', component: AppRegisterComponent},
-    {path: 'dashboard', component: AppDashboardComponent, canActivate: [CanActivateViaAuthGuard]},
+    {
+        path: 'dashboard',
+        component: AppDashboardComponent,
+        canActivate: [CanActivateViaAuthGuard],
+        data: {name: 'dashboard'}
+    },
     {path: 'login', component: AppLoginComponent},
-    {path: 'gallery', component: AppGalleryComponent, canActivate: [CanActivateViaAuthGuard]},
-    {path: 'gallery/new', component: AppUploadfilesComponent, canActivate: [CanActivateViaAuthGuard]},
-    {path: 'gallery/edit/:id', component: AppUploadfilesComponent, canActivate: [CanActivateViaAuthGuard]},
+    {
+        path: 'gallery',
+        component: AppGalleryComponent,
+        canActivate: [CanActivateViaAuthGuard],
+        data: {name: 'gallery.index'}
+    },
+    {
+        path: 'admin',
+        component: AppAdminRouterComponent,
+        canActivate: [CanActivateViaAuthGuard],
+        data: {name: 'admin.dashboard'},
+        children: [
+            {path: '', redirectTo: '/admin/(adminoutlet:dashboard)', component: null, pathMatch: 'full'},
+            {
+                path: 'dashboard',
+                component: AppAdminDashboardComponent,
+                outlet: 'adminoutlet',
+                pathMatch: 'full',
+                canActivate: [CanActivateViaAuthGuard],
+                data: {name: 'admin.dashboard'}
+            },
+            {
+                path: 'gallery',
+                component: AppGalleryListComponent,
+                outlet: 'adminoutlet',
+                pathMatch: 'full',
+                canActivate: [CanActivateViaAuthGuard],
+                data: {name: 'gallery.edit'}
+            },
+            {
+                path: 'gallery-add',
+                component: AppUploadfilesComponent,
+                outlet: 'adminoutlet',
+                pathMatch: 'full',
+                canActivate: [CanActivateViaAuthGuard],
+                data: {name: 'gallery.store'}
+            },
+            {
+                path: 'gallery-edit/:id',
+                component: AppUploadfilesComponent,
+                outlet: 'adminoutlet',
+                pathMatch: 'full',
+                canActivate: [CanActivateViaAuthGuard],
+                data: {name: 'gallery.edit'}
+            },
 
+
+        ]
+    },
 
 
     {
@@ -50,6 +104,7 @@ const appRoutes: Routes = [
         AppGalleryComponent,
         AppShoppingcartComponent,
         AppUploadfilesComponent,
+        AppGalleryListComponent,
 
 
         AppComponent,
@@ -57,7 +112,10 @@ const appRoutes: Routes = [
         AppRoomComponent,
         AppRegisterComponent,
         AppLoginComponent,
-        AppDashboardComponent
+        AppDashboardComponent,
+
+        AppAdminDashboardComponent,
+        AppAdminRouterComponent
 
     ],
     imports: [
@@ -67,6 +125,7 @@ const appRoutes: Routes = [
         FormsModule,
         HttpClientModule,
         FileUploadModule,
+        NgxDatatableModule,
         RouterModule.forRoot(
             appRoutes,
             {enableTracing: false} // <-- debugging purposes only

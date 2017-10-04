@@ -4,6 +4,16 @@ export class Picture {
     private _thumbnail: string;
     private _preview: boolean;
 
+    private _titelthumbnail = false;
+
+
+    get titelthumbnail(): boolean {
+        return this._titelthumbnail;
+    }
+
+    set titelthumbnail(value: boolean) {
+        this._titelthumbnail = value;
+    }
 
     get id(): string {
         return this._id;

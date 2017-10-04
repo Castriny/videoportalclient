@@ -14,15 +14,23 @@ export class AppNavbarComponent implements OnInit {
     constructor(private _sessionService: SessionService,
                 private _router: Router,
                 private _authService: AuthService) {
+
     }
 
     ngOnInit(): void {
+
     }
+
+    hasPermisson(name: string) {
+        return this._sessionService.hasPermission(name) && this._authService.isAuthenticated();
+    }
+
     isAuthenticated() {
         return this._authService.isAuthenticated();
     }
+
     logout() {
         this._sessionService.logout();
-        this._router.navigate(['/dashboard']);
+        this._router.navigate(['/login']);
     }
 }

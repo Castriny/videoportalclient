@@ -1,0 +1,67 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title pull-left">
+            Gallery
+        </h3>
+
+        <button [routerLink]="['/admin', {outlets: {'adminoutlet': ['gallery-add']}}]" class="btn btn-success pull-right">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> New Gallery
+        </button>
+        <div class="clearfix"></div>
+
+    </div>
+    <div class="panel-body">
+
+        <ngx-datatable
+                class="material"
+                [rows]="galleryList"
+                [columns]="[{name:'Name'},{name:'Gender'},{name:'Company'}]"
+                [columnMode]="'force'"
+                [headerHeight]="50"
+                [footerHeight]="50"
+                [loadingIndicator] ="loadingIndicator"
+                [rowHeight]="'auto'"
+                [limit]="10">
+
+            <ngx-datatable-column name="Actions" [width]="300">
+                <ng-template let-row="row" let-value="value" ngx-datatable-header-template="" -template>
+                    Actions
+                </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+
+
+                    <img style="height: 70px;width: 100px;"
+
+
+                         class="img-fluid img-thumbnail"
+                         src="data:image/jpg;base64,{{getThumbnail(row.pictures)}}"/>
+
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Name" prop="name" [width]="300">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Gender" [width]="300">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    {{row.pictures.length}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Actions" [width]="300">
+                <ng-template let-row="row" let-value="value" ngx-datatable-header-template>
+                    Actions
+                </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+
+
+                    <button class="btn btn-default" [routerLink]="['/admin', {outlets: {'adminoutlet': ['gallery-edit',row.id]}}]">
+                        <i role="button" class="fa fa-pencil" aria-hidden="true"></i>
+
+                    </button>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+</div>

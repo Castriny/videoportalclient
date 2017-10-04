@@ -7,7 +7,7 @@ import {AuthData, SessionService} from '../../Service/AuthService/SessionService
 @Component({
     selector: 'app-login',
     templateUrl: './app.login.component.html',
-    providers: [SessionService]
+    providers: []
 })
 export class AppLoginComponent implements OnInit {
     loginForm: FormGroup;
@@ -17,15 +17,12 @@ export class AppLoginComponent implements OnInit {
     }
 
     onSubmit() {
-console.log(this.loginForm.valid);
 
-
-
-            this._sessionService.authenticate(this.model).subscribe((response: any) => {
-                localStorage.setItem('token', response.token);
-                this._router.navigate(['/dashboard']);
-            });
-
+        this._sessionService.authenticate(this.model).subscribe((response: any) => {
+            this._sessionService.setUser(response.user);
+            localStorage.setItem('token', response.token);
+            this._router.navigate(['/dashboard']);
+        });
 
 
     }

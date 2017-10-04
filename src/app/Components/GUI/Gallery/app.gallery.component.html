@@ -1,13 +1,10 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title pull-left">
-            Gallery
-        </h3>
 
-        <button routerLink="/gallery/new" class="btn btn-success pull-right">
-            <i class="fa fa-floppy-o" aria-hidden="true"></i> new Gallery
-        </button>
-        <div class="clearfix"></div>
+            Gallery
+
+
+
 
     </div>
     <div class="panel-body">
@@ -18,7 +15,7 @@
 
             <li *ngFor="let item of galleryList" class="card">
 
-                <div [style.background-image]="getBackground(item.pictures[0].thumbnail)" class="card__inner">
+                <div [style.background-image]="getBackground(item)"  class="card__inner">
 
 
 

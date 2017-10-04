@@ -4,16 +4,16 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 import {Observable} from 'rxjs/Observable';
 import {AuthService} from '../Service/AuthService/AuthService';
 import 'rxjs/add/operator/catch';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 
 @Injectable()
 export class JWTInterceptor implements HttpInterceptor {
-    constructor(public auth: AuthService,private _router:Router) {
+    constructor(public auth: AuthService, private _router: Router) {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-console.log(request);
+
 
         request = request.clone({
             setHeaders: {

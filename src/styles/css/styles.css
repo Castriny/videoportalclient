@@ -4,7 +4,9 @@
 
 @import "../../../node_modules/font-awesome/css/font-awesome.css";
 @import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
@@ -15,6 +17,7 @@ body {
 /*
  * Typography
  */
+
 .thumbnailBorderActiv {
     border: 1px solid red;
 }

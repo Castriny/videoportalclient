@@ -1,256 +1,281 @@
 <section>
 
     <form class="form-horizontal" (ngSubmit)="onSubmit()" #uploadForm="ngForm">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title pull-left">
-                Gallery
-            </h3>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title pull-left">
+                    Gallery
+                </h3>
 
-            <button [disabled]="!(uploadForm.valid && model.pictures.length)" class="btn btn-success pull-right">
-                <i class="fa fa-floppy-o" aria-hidden="true"></i> Speichern
-            </button>
-            <div class="clearfix"></div>
+                <button [disabled]="!(uploadForm.valid && model.pictures.length)" class="btn btn-success pull-right">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Speichern
+                </button>
+                <div class="clearfix"></div>
 
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            Beschreibung
-                        </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Beschreibung
+                            </div>
 
-                        <div class="panel-body">
+                            <div class="panel-body">
 
-                            <div class="row">
+                                <div class="row">
 
                                     <div class="col-md-12">
 
-
-                                        <fieldset>
-                                            <!-- Text input-->
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label" for="name">Gallery
-                                                    Name</label>
-                                                <div class="col-md-4">
-                                                    <input id="name" name="textinput" type="text"
-                                                           [(ngModel)]="model.name" name="name"
-                                                           #name="ngModel"
-                                                           required
-                                                           placeholder="placeholder" class="form-control input-md">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <!-- Text input-->
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label" for="name">Gallery
+                                                                Name</label>
+                                                            <div class="col-md-4">
+                                                                <input id="name" name="textinput" type="text"
+                                                                       [(ngModel)]="model.name" name="name"
+                                                                       #name="ngModel"
+                                                                       required
+                                                                       placeholder="placeholder"
+                                                                       class="form-control input-md">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-
-                                            <!-- Select Basic -->
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label" for="selectbasic">Select
-                                                    Basic</label>
-                                                <div class="col-md-4">
-                                                    <select id="selectbasic" name="selectbasic" class="form-control">
-                                                        <option value="1">Option one</option>
-                                                        <option value="2">Option two</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <!-- Textarea -->
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label" for="text">Text Area</label>
-                                                <div class="col-md-10">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <!-- Textarea -->
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 control-label" for="text">Text
+                                                                Area</label>
+                                                            <div class="col-md-10">
                                                     <textarea style="width: 100%;height: 50vh" class="form-control"
                                                               [(ngModel)]="model.text" name="text"
                                                               required
                                                               #name="ngModel"
                                                               id="text">default text</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </fieldset>
-
-
+                                        </div>
                                     </div>
 
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            Picture Upload
-                        </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Picture Upload
+                            </div>
 
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <button type="button" class="btn btn-success btn-s"
-                                            (click)="uploadAll()"
-                                            [disabled]="!(uploader.getNotUploadedItems().length)">
-                                        <span class="glyphicon glyphicon-upload"></span> Upload all
-                                    </button>
-                                    <button type="button" class="btn btn-warning btn-s"
-                                            (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
-                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-s"
-                                            (click)="removeAll()" [disabled]="!uploader.queue.length">
-                                        <span class="glyphicon glyphicon-trash"></span> Remove all
-                                    </button>
-                                    <b style="text-align: center;width: 100%">{{uploader.queue.length}} / {{uploader.options.queueLimit}} Picture(s)</b>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">Maximal 10MB</li>
+                                            <li class="list-group-item">Erste Bild ist Preview</li>
+                                            <li class="list-group-item">Unten Preview auswahl bearbeiten</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="panel panel-info">
+                                            <div class="panel-body">
+                                                <img *ngIf="thumbnail" style="height: 70px;width: 100px;"
+
+
+                                                     class="img-fluid img-thumbnail"
+                                                     src="data:image/jpg;base64,{{thumbnail.thumbnail}}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <button type="button" class="btn btn-success btn-s"
+                                                (click)="uploadAll()"
+                                                [disabled]="!(uploader.getNotUploadedItems().length)">
+                                            <span class="glyphicon glyphicon-upload"></span> Upload all
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-s"
+                                                (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-s"
+                                                (click)="removeAll()" [disabled]="!uploader.queue.length">
+                                            <span class="glyphicon glyphicon-trash"></span> Remove all
+                                        </button>
+                                        <b style="text-align: center;width: 100%">{{uploader.queue.length}} /
+                                            {{uploader.options.queueLimit}} Picture(s)</b>
+
+                                    </div>
 
                                 </div>
-
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
                                         <div>
-                                            <div class="progress" style="">
-                                                <div class="progress-bar" role="progressbar"
-                                                     [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div ng2FileDrop
-                                         [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-                                         (fileOver)="fileOverBase($event)"
-                                         [uploader]="uploader"
-                                         class="well my-drop-zone"
-                                         style="text-align: left;vertical-align: text-top;height: 200px;min-height: 200px">
-                                        <div class="row">
-
-                                            <div class="col-md-5" *ngFor="let item of uploader.queue; let i = index">
-                                                <div class="row">
-                                                    <div class="col-md-12"><strong>{{ item?.file?.name }}</strong></div>
+                                            <div>
+                                                <div class="progress" style="">
+                                                    <div class="progress-bar" role="progressbar"
+                                                         [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
                                                 </div>
-
-
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">Thumbnail Gallery</div>
-                                        <div class="panel-body">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div ng2FileDrop
+                                             [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                                             (fileOver)="fileOverBase($event)"
+                                             [uploader]="uploader"
+                                             class="well my-drop-zone"
+                                             style="text-align: left;vertical-align: text-top;height: 200px;min-height: 200px">
                                             <div class="row">
 
-                                                <div class="col-md-12">
+                                                <div class="col-md-5"
+                                                     *ngFor="let item of uploader.queue; let i = index">
+                                                    <div class="row">
+                                                        <div class="col-md-12"><strong>{{ item?.file?.name }}</strong>
+                                                        </div>
+                                                    </div>
 
-                                                    <div class="row text-center text-lg-left">
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Thumbnail Gallery</div>
+                                            <div class="panel-body">
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+
+                                                        <div class="row text-center text-lg-left">
 
 
-                                                        <div *ngFor="let r of model.pictures"
-                                                             class="col-lg-3 col-md-4 col-xs-6">
+                                                            <div *ngFor="let r of model.pictures;let i = index"
+                                                                 class="col-lg-3 col-md-4 col-xs-6">
 
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div style="float: left">
-                                                                        <img style="height: 70px;width: 100px;"
-                                                                             (click)="r.preview=!r.preview"
-                                                                             [ngClass]="{'thumbnailBorderActiv':r.preview}"
-                                                                             class="img-fluid img-thumbnail"
-                                                                             src="data:image/jpg;base64,{{r.thumbnail}}">
-                                                                    </div>
-
-                                                                    <div style="float: left; padding-left: 10px">
-                                                                        <div>
-                                                                            <i title="Preview Picture" [ngClass]="{'font-opacity':!r.preview,'font-green':r.preview}"
-                                                                               class="fa fa-picture-o"
-                                                                               aria-hidden="true"></i>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div style="float: left">
+                                                                            <img  style="height: 70px;width: 100px;"
+                                                                                 (click)="r.preview=!r.preview"
+                                                                                 [ngClass]="{'thumbnailBorderActiv':r.preview}"
+                                                                                 class="img-fluid img-thumbnail"
+                                                                                 src="data:image/jpg;base64,{{r.thumbnail}}">
                                                                         </div>
-                                                                        <div>
-                                                                            <i (click)="deleteImage(r.id)" title="Delete Picture" class="fa fa-times color-red"
-                                                                               aria-hidden="true"></i>
+
+                                                                        <div style="float: left; padding-left: 10px">
+                                                                            <div>
+                                                                                <i style="cursor: pointer" title="Preview Picture"
+
+                                                                                   [ngClass]="{'font-green':r.titelthumbnail}"
+                                                                                   (click)="changeThumbnail(r)"
+                                                                                   class="fa fa-picture-o"
+                                                                                   aria-hidden="true"></i>
+                                                                            </div>
+                                                                            <div>
+                                                                                <i (click)="deleteImage(r.id)"
+                                                                                   title="Delete Picture"
+                                                                                   class="fa fa-times color-red"
+                                                                                   aria-hidden="true"></i>
+                                                                            </div>
+
+
                                                                         </div>
 
 
                                                                     </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
 
 
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
 
-
-                                                                </div>
-                                                            </div>
                                                         </div>
 
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div [hidden]="true" class="row">
-                                <div class="col-md-12">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th width="50%">Name</th>
-                                            <th>Size</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr *ngFor="let item of uploader.queue; let i = index">
-                                            <!--
-                                            <td><input [(ngModel)]="thumbnail" value="{{i}}" name="thumbnail" type="radio"/>
+                                <div [hidden]="true" class="row">
+                                    <div class="col-md-12">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th width="50%">Name</th>
+                                                <th>Size</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let item of uploader.queue; let i = index">
+                                                <!--
+                                                <td><input [(ngModel)]="thumbnail" value="{{i}}" name="thumbnail" type="radio"/>
 
-                                            </td>
-                                              -->
-                                            <td><strong>{{ item?.file?.name }}</strong></td>
-                                            <td nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }}
-                                                MB
-                                            </td>
-                                            <td *ngIf="uploader.isHTML5">
-                                                <div class="progress" style="margin-bottom: 0;">
-                                                    <div class="progress-bar" role="progressbar"
-                                                         [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
+                                                </td>
+                                                  -->
+                                                <td><strong>{{ item?.file?.name }}</strong></td>
+                                                <td nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }}
+                                                    MB
+                                                </td>
+                                                <td *ngIf="uploader.isHTML5">
+                                                    <div class="progress" style="margin-bottom: 0;">
+                                                        <div class="progress-bar" role="progressbar"
+                                                             [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
                                                 <span *ngIf="item.isSuccess"><i
                                                         class="glyphicon glyphicon-ok"></i></span>
-                                                <span *ngIf="item.isCancel"><i
-                                                        class="glyphicon glyphicon-ban-circle"></i></span>
-                                                <span *ngIf="item.isError"><i
-                                                        class="glyphicon glyphicon-remove"></i></span>
-                                            </td>
-                                            <td nowrap>
-                                                <button type="button" class="btn btn-danger btn-xs"
-                                                        (click)="item.remove()">
-                                                    <span class="glyphicon glyphicon-trash"></span> Remove
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                                    <span *ngIf="item.isCancel"><i
+                                                            class="glyphicon glyphicon-ban-circle"></i></span>
+                                                    <span *ngIf="item.isError"><i
+                                                            class="glyphicon glyphicon-remove"></i></span>
+                                                </td>
+                                                <td nowrap>
+                                                    <button type="button" class="btn btn-danger btn-xs"
+                                                            (click)="item.remove()">
+                                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
+
+
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </form>
 </section>

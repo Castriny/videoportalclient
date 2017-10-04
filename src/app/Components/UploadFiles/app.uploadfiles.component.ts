@@ -9,7 +9,7 @@ import {Picture} from '../../Model/Picture';
 import {PictureGallery} from '../../Model/PictureGallery';
 import {PictureService} from '../../Service/PictureService';
 import {GalleryService} from '../../Service/GalleryService';
-
+import { Location } from '@angular/common';
 const URL = Config.httpBasePath + 'gallery/upload';
 
 @Component({
@@ -19,8 +19,10 @@ const URL = Config.httpBasePath + 'gallery/upload';
 })
 export class AppUploadfilesComponent implements OnInit {
 
-
+    private maxFileSize = 10000000;
     public model: PictureGallery = new PictureGallery();
+
+    public thumbnail: Picture = null;
 
     public uploader: FileUploader = new FileUploader(
         {
@@ -47,7 +49,20 @@ export class AppUploadfilesComponent implements OnInit {
                 private _authService: AuthService,
                 private _router: Router,
                 private _galleryService: GalleryService,
-                private _route: ActivatedRoute) {
+                private _route: ActivatedRoute,
+                private _location: Location) {
+    }
+
+    public changeThumbnail(picture: Picture) {
+        this.thumbnail = picture;
+        const index = this.model.pictures.indexOf(picture);
+
+        for (const item of this.model.pictures) {
+            item.titelthumbnail = false;
+        }
+        this.model.pictures[index].preview = true;
+        this.model.pictures[index].titelthumbnail = true;
+
     }
 
     public deleteImage(uuid: string) {
@@ -78,6 +93,12 @@ export class AppUploadfilesComponent implements OnInit {
 
     public onSubmit() {
         this.model.uploaded = true;
+        for (const item of this.model.pictures) {
+            if (item.titelthumbnail) {
+                item.preview = true;
+            }
+        }
+
         if (this.model.id) {
             this._galleryService.update(this.model).subscribe((r: any) => {
                 this.model.id = r.id;
@@ -87,6 +108,8 @@ export class AppUploadfilesComponent implements OnInit {
                 this.model.id = r.id;
             });
         }
+        this._router.navigate(['/admin', {outlets: {'adminoutlet': ['gallery']}}]);
+
 
 
     }
@@ -101,7 +124,7 @@ export class AppUploadfilesComponent implements OnInit {
             if (params['id']) {
                 const id: number = params['id'];
                 this._galleryService.get(id).subscribe((r: any) => {
-                    console.log(r);
+
                     this.model.id = r.id;
 
                     this.model.name = r.name;
@@ -111,27 +134,33 @@ export class AppUploadfilesComponent implements OnInit {
                         picture.id = p.id;
                         picture.thumbnail = p.thumbnail;
                         picture.preview = p.preview;
+                        picture.titelthumbnail = p.titelthumbnail;
                         this.model.pictures.push(picture);
+                        if (picture.titelthumbnail) {
+                            this.thumbnail = picture;
+                        }
                     }
 
 
                 });
             }
-            console.log(params);
+
             // In a real app: dispatch action to load the details here.
         });
         this._router.events.subscribe((val: any) => {
             if (this.model.pictures.length && this.model.uploaded === false) {
-                this.removeAll();
+                //this.removeAll();
+            }
+        });
+
+
+        this.uploader.onAfterAddingFile = (file) => {
+
+            const fileIndex = this.uploader.queue.indexOf(file);
+            if (file.file.size > this.maxFileSize) {
+                this.uploader.queue.splice(fileIndex, 1);
             }
 
-        });
-        this.uploader.onBeforeUploadItem = (item) => {
-            console.log('onBeforeUploadItem', item);
-            item.withCredentials = false;
-        }
-        this.uploader.onAfterAddingFile = (file) => {
-            console.log('onAfterAddingFile', file);
             file.withCredentials = false;
         };
 
@@ -150,6 +179,12 @@ export class AppUploadfilesComponent implements OnInit {
 
 
             this.model.pictures.push(picture);
+
+            if (this.model.pictures.length === 1) {
+                this.model.pictures[0].preview = true;
+                this.model.pictures[0].titelthumbnail = true;
+                this.thumbnail = picture;
+            }
 
 
         };

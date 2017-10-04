@@ -45,7 +45,9 @@
 }
 .card__inner {
     position: relative;
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     overflow: hidden;
 }
 .card__inner h2 {

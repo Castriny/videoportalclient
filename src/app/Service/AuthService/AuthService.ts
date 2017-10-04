@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt';
+import {SessionService} from "./SessionService";
 
 @Injectable()
 export class AuthService {
@@ -11,7 +12,6 @@ export class AuthService {
     public getToken(): string {
         return localStorage.getItem('token');
     }
-
     public isAuthenticated(): boolean {
 
         // get the token

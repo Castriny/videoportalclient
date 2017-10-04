@@ -1,11 +1,13 @@
 <nav>
-
     <ul>
-        <li *ngIf="isAuthenticated()">
+        <li *ngIf="hasPermisson('dashboard')">
             <a routerLink="/dashboard">Dasboard</a>
         </li>
-        <li *ngIf="isAuthenticated()">
+        <li *ngIf="hasPermisson('gallery.index')">
             <a routerLink="/gallery">Gallery</a>
+        </li>
+        <li *ngIf="hasPermisson('admin.dashboard')">
+            <a routerLink="/admin">Admin</a>
         </li>
         <li *ngIf="!isAuthenticated()">
             <a routerLink="/login">Login</a>
